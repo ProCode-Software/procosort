@@ -1,0 +1,13 @@
+{
+  "name": "procosort",
+  "version": "1.0.0",
+  "description": "A fast topological sort implementation",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "bun run main.js"
+  },
+  "keywords": ["toposort", "topological sort"],
+  "author": "ProCode Software",
+  "license": "MIT"
+}
