@@ -26,9 +26,13 @@ export default function procode(graph, group = false) {
     // 3. For every { a: [b, c] }, append the direct dependencies of b and c
     for (const v of allVertices) {
         const dependenciesOfV = dependencies.get(v)
-        for (const dep of dependenciesOfV) {
-            if (dep === v) return 'cycle' // Cycle: v depends on itself
-            dependenciesOfV.push(...dependencies.get(dep))
+        const oldLength = dependenciesOfV.length
+        for (let i = 0; i < oldLength; i++) {
+            const dep = dependenciesOfV[i]
+            for (const depOfDep of dependencies.get(dep)) {
+                if (depOfDep == v) return 'cycle'
+                dependenciesOfV.push(depOfDep)
+            }
         }
     }
 
